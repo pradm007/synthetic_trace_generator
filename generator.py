@@ -10,12 +10,15 @@ import pandas as pd
 import rstr
 
 PATTERN_REGEX_DIC = {
-    "Response": "[^{0}]*({0}[^{1}]*{1}[^{0}]*)*",
-    "Alternating": "[^{0}{1}]*({0}[^{0}{1}]*{1}[^{0}{1}]*)*",
-    "Multieffect": "[^{0}{1}]*({0}[^{0}{1}]*{1}[^{0}]*)*",
-    "Multicause": "[^{0}{1}]*({0}[^{1}]*{1}[^{0}{1}]*)*"
+    "Response_ori": "[^{0}]*({0}[^{1}]*{1}[^{0}]*)*",
+    "Response": "[{1}]*({0}[{0}]*{1}[{1}]*)*",
+    "Alternating_ori": "[^{0}{1}]*({0}[^{0}{1}]*{1}[^{0}{1}]*)*",
+    "Alternating": "[{1}{1}]*({0}[{1}{1}]*{1}[{1}{1}]*)*",
+    "Multieffect_ori": "[^{0}{1}]*({0}[^{0}{1}]*{1}[^{0}]*)*",
+    "Multieffect": "[{1}{1}]*({0}[{1}{1}]*{1}[{1}]*)*",
+    "Multicause_ori": "[^{0}{1}]*({0}[^{1}]*{1}[^{0}{1}]*)*",
+    "Multicause": "[{1}{1}]*({0}[{0}]*{1}[{1}{1}]*)*"
 }
-
 
 class SyntheticTraceGenerator:
     def __init__(self, regex=None, temporalPattern=None, alpbhabetLen=0, traceLength=1000):
